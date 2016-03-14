@@ -8,7 +8,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "favorite",
-        uniqueConstraints = @UniqueConstraint(name = "favorite_constraint", columnNames = {"name"}))
+        uniqueConstraints = @UniqueConstraint(name = "favorite_constraint", columnNames = {"user"}))
 public class Favorite {
 
     @Id
@@ -17,9 +17,12 @@ public class Favorite {
     private Long id;
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user")
     private User user;
 
     @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "favorite_book", joinColumns = @JoinColumn(name = "favorite_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id"))
     private List<Book> books;
 
     public Long getId() {
