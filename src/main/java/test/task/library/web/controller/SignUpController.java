@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,14 +40,6 @@ public class SignUpController {
     @Autowired
     @Qualifier("userDTOValidator")
     private Validator validator;
-
-    @Autowired
-    private AuthenticationManager authenticationManager;
-
-//    @InitBinder
-//    private void initBinder(WebDataBinder binder) {
-//        binder.addValidators(validator);
-//    }
 
     @PreAuthorize("hasRole('ROLE_ANONYMOUS')")
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
