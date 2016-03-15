@@ -1,4 +1,4 @@
-package test.task.library.web;
+package test.task.library.web.controller;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -9,11 +9,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author Nikolay Yashchenko
  */
 @Controller
-public class SignUpController {
+public class SignInController {
 
-    @PreAuthorize("hasRole('ROLE_ANONYMOUS')")
-    @RequestMapping(value = "/registration", method = RequestMethod.GET)
-    public String registration() {
-        return "registration";
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login() {
+        return "login";
     }
 }

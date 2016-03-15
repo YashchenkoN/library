@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
 <head>
@@ -57,14 +59,30 @@
     <div id="page-content-wrapper">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-12">
-                    <h1>Online Library</h1>
-                    <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller
-                        screens, and will appear non-collapsed on larger screens. When toggled using the button below,
-                        the menu will appear/disappear. On small screens, the page content will be pushed off
-                        canvas.</p>
-                    <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
-                    <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+                <div class="col-lg-6 center-block">
+                    <form:form method="POST" modelAttribute="authForm" action="/registration">
+                        <spring:bind path="email">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                                    <form:input type="text" class="form-control" placeholder="Email" path="email"/>
+                                </div>
+                                <span class="help-block has-error" id="email-error"></span>
+                            </div>
+                        </spring:bind>
+                        <spring:bind path="password">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+                                    <form:input type="password" class="form-control" id="password" placeholder="Password" path="password"/>
+                                </div>
+                                <span class="help-block has-error" id="password-error"></span>
+                            </div>
+                        </spring:bind>
+                        <button type="submit" id="login_btn" class="btn btn-block bt-login"
+                                data-loading-text="Signing In....">Registration
+                        </button>
+                    </form:form>
                 </div>
             </div>
         </div>

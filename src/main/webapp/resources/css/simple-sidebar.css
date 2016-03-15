@@ -123,3 +123,8 @@
         margin-right: 0;
     }
 }
+
+.center-form {
+    display: table;
+    margin: 0 auto;
+}

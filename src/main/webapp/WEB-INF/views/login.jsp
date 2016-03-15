@@ -58,13 +58,23 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>Online Library</h1>
-                    <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller
-                        screens, and will appear non-collapsed on larger screens. When toggled using the button below,
-                        the menu will appear/disappear. On small screens, the page content will be pushed off
-                        canvas.</p>
-                    <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
-                    <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+                    <form action="/auth">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                                <input type="text" class="form-control" id="login_username" placeholder="Email">
+                            </div>
+                            <span class="help-block has-error" id="email-error"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+                                <input type="password" class="form-control" id="password" placeholder="Password">
+                            </div>
+                            <span class="help-block has-error" id="password-error"></span>
+                        </div>
+                        <button type="button" id="login_btn" class="btn btn-block bt-login" data-loading-text="Signing In....">Sign In</button>
+                    </form>
                 </div>
             </div>
         </div>
