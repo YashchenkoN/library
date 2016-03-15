@@ -1,6 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
 <head>
@@ -34,7 +33,7 @@
                 </li>
 
                 <li>
-                    <a href="#">Sign In</a>
+                    <a href="/login">Sign In</a>
                 </li>
             </c:if>
             <li>
@@ -60,28 +59,9 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <form:form method="POST" modelAttribute="userDTO" action="/auth">
-                        <spring:bind path="email">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-addon"><i class="fa fa-user"></i></div>
-                                    <form:input type="text" class="form-control" placeholder="Email" path="email"/>
-                                </div>
-                                <span class="help-block has-error" id="email-error"></span>
-                            </div>
-                        </spring:bind>
-                        <spring:bind path="password">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-addon"><i class="fa fa-lock"></i></div>
-                                    <form:input type="password" class="form-control" id="password" placeholder="Password" path="password"/>
-                                </div>
-                                <span class="help-block has-error" id="password-error"></span>
-                            </div>
-                        </spring:bind>
-                        <button type="submit" class="btn btn-block bt-login"
-                                data-loading-text="Signing In....">Sign In
-                        </button>
+                    <h1>Online Library</h1>
+                    <form:form method="POST" modelAttribute="bookDTO" action="">
+
                     </form:form>
                 </div>
             </div>
@@ -93,13 +73,5 @@
 <script src="../../resources/js/jquery.js"></script>
 <script src="../../resources/js/bootstrap.min.js"></script>
 
-<script>
-    $("#menu-toggle").click(function (e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-</script>
-
 </body>
-
 </html>

@@ -39,13 +39,13 @@
                 <a href="#">Search</a>
             </li>
             <c:if test="${not empty pageContext.request.userPrincipal}">
-                <c:if test="${pageContext.request.isUserInRole('USER')}">
+                <c:if test="${pageContext.request.isUserInRole('ROLE_USER')}">
                     <li>
                         <a href="#">My profile</a>
                     </li>
                 </c:if>
 
-                <c:if test="${pageContext.request.isUserInRole('USER')}">
+                <c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}">
                     <li>
                         <a href="#">Add book</a>
                     </li>
@@ -59,12 +59,6 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h1>Online Library</h1>
-                    <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller
-                        screens, and will appear non-collapsed on larger screens. When toggled using the button below,
-                        the menu will appear/disappear. On small screens, the page content will be pushed off
-                        canvas.</p>
-                    <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
-                    <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
                 </div>
             </div>
         </div>
@@ -75,13 +69,5 @@
 <script src="../../resources/js/jquery.js"></script>
 <script src="../../resources/js/bootstrap.min.js"></script>
 
-<script>
-    $("#menu-toggle").click(function (e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-</script>
-
 </body>
-
 </html>
