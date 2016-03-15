@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices;
 import test.task.library.service.UserDetailService;
 
@@ -44,13 +45,14 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-                .antMatchers("/", "/favicon.ico", "/resources/**", "/hello/**", "/WEB-INF/**").permitAll()
+                .antMatchers("/", "/favicon.ico", "/resources/**", "/WEB-INF/**", "/registration").permitAll()
                 .anyRequest().authenticated()
                 .and()
+                .addFilter(authenticationFilter())
             .formLogin()
-                .loginPage("/signin")
+                .loginPage("/login")
                 .permitAll()
-                .failureUrl("/signin?error=1")
+                .failureUrl("/login?error=1")
                 .loginProcessingUrl("/authenticate")
                 .and()
             .logout()
@@ -63,6 +65,15 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .key("remember-me-key")
                 .and()
             .csrf().disable();
+    }
+
+    private UsernamePasswordAuthenticationFilter authenticationFilter() throws Exception {
+        UsernamePasswordAuthenticationFilter filter = new UsernamePasswordAuthenticationFilter();
+        filter.setUsernameParameter("email");
+        filter.setPasswordParameter("password");
+        filter.setFilterProcessesUrl("/auth");
+        filter.setAuthenticationManager(authenticationManagerBean());
+        return filter;
     }
 
     @Bean
