@@ -6,6 +6,8 @@ import org.springframework.transaction.annotation.Transactional;
 import test.task.library.dao.GenreDao;
 import test.task.library.entity.Genre;
 
+import java.util.List;
+
 /**
  * @author Nikolay Yashchenko
  */
@@ -31,6 +33,12 @@ public class GenreServiceImpl implements GenreService {
     @Override
     public Genre update(Genre genre) {
         return genreDao.update(genre);
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<Genre> getAll() {
+        return genreDao.getAll();
     }
 
     @Transactional

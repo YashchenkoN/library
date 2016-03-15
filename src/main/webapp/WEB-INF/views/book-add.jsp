@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
 <head>
@@ -61,7 +62,27 @@
                 <div class="col-lg-12">
                     <h1>Online Library</h1>
                     <form:form method="POST" modelAttribute="bookDTO" action="">
+                        <spring:bind path="email">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon"></div>
+                                    <form:input type="text" class="form-control" placeholder="Title" path="title"/>
+                                </div>
+                            </div>
+                        </spring:bind>
 
+                        <spring:bind path="author">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon"></div>
+                                    <form:input type="text" class="form-control" placeholder="Author" path="author"/>
+                                </div>
+                            </div>
+                        </spring:bind>
+
+                        <spring:bind path="genreId">
+                            <form:select path="genreId" items="${genres}"/>
+                        </spring:bind>
                     </form:form>
                 </div>
             </div>

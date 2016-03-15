@@ -14,10 +14,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import test.task.library.dto.BookDTO;
+import test.task.library.dto.GenreDTO;
 import test.task.library.entity.Book;
 import test.task.library.service.BookService;
+import test.task.library.service.GenreService;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Nikolay Yashchenko
@@ -36,6 +40,9 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
+    @Autowired
+    private GenreService genreService;
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String getById(@PathVariable("id") Long id) {
         // todo
@@ -45,6 +52,10 @@ public class BookController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String addBook(Model model) {
+        List<GenreDTO> genreDTOs = genreService.getAll().stream()
+                .map(g -> conversionService.convert(g, GenreDTO.class))
+                .collect(Collectors.toList());
+        model.addAttribute("genres", genreDTOs);
         model.addAttribute("bookDTO", new BookDTO());
         return "book-add";
     }

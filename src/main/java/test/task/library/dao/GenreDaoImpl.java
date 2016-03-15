@@ -1,10 +1,12 @@
 package test.task.library.dao;
 
+import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 import test.task.library.entity.Genre;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 /**
  * @author Nikolay Yashchenko
@@ -29,6 +31,14 @@ public class GenreDaoImpl implements GenreDao {
     @Override
     public Genre update(Genre genre) {
         return entityManager.merge(genre);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Genre> getAll() {
+        return ((Session) entityManager.getDelegate())
+                .createCriteria(Genre.class)
+                .list();
     }
 
     @Override

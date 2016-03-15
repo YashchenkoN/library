@@ -7,6 +7,7 @@ import org.springframework.core.convert.converter.ConverterRegistry;
 import org.springframework.stereotype.Service;
 import test.task.library.converter.BookDTOtoBookConverter;
 import test.task.library.converter.GenreDTOtoGenreConverter;
+import test.task.library.converter.GenreToGenreDTOConverter;
 import test.task.library.converter.UserDTOtoUserConverter;
 import test.task.library.dto.GenreDTO;
 import test.task.library.entity.Genre;
@@ -33,6 +34,7 @@ public class ConversionService extends ConversionServiceFactoryBean {
         ConverterRegistry converterRegistry = (ConverterRegistry) getObject();
         converterRegistry.addConverter(new UserDTOtoUserConverter(userService));
         converterRegistry.addConverter(genreDTOGenreConverter);
+        converterRegistry.addConverter(new GenreToGenreDTOConverter());
         converterRegistry.addConverter(new BookDTOtoBookConverter(bookService, genreDTOGenreConverter));
     }
 }
