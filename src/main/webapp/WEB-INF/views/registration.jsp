@@ -60,7 +60,16 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-6 center-block">
-                    <form:form method="POST" modelAttribute="authForm" action="/registration">
+                    <form:form method="POST" modelAttribute="userDTO" action="/registration">
+                        <spring:bind path="name">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                                    <form:input type="text" class="form-control" placeholder="Name" path="name"/>
+                                </div>
+                                <span class="help-block has-error" id="name-error"></span>
+                            </div>
+                        </spring:bind>
                         <spring:bind path="email">
                             <div class="form-group">
                                 <div class="input-group">
